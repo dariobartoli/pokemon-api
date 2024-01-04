@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  align-items: center;
+  background-image: url('./public/img/pokebola.jpg');
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.lista__container{
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.lista__container>span{
+  background-color: #385BA8;
+  padding: 0.2rem;
+  border-radius: 50%;
+  border: 1px solid #e3e3e3;
+  scale: 1;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+.lista__container>span:active{
+  background-color: #5881d9;
+  scale: 0.7;
+}
+
+.disabled{
+  background-color: #FF4643 !important;
+  pointer-events: none;
+}
+
+.lista__pokemon{
+  background-image: linear-gradient(to bottom, #dededeef, #e6e6e6ef, #eeeeeeef, #f7f7f7ef, #ffffffef);  border-radius: 10px;
+  border: 1px solid rgb(211, 211, 211);
+  width: 90%;
+  max-width: 1400px;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0.1rem;
+}
+
+.card__pokemon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(to bottom, #ff3e32, #ff6d91, #ffa4d6, #f6d6fa, #ffffff);
+  border: 1px solid rgb(207, 207, 207);
+  padding: 0.2rem;
+  border-radius: 6px;
+  width: 60px;
+}
+.card__pokemon>p{
+  font-size: 0.7rem;
+}
+.card__image{
+  width: 50px;
+}
+
+.title__image{
+  width: 300px;
+  background-image: linear-gradient(to bottom, #dededeef, #e6e6e6ef, #eeeeeeef, #f7f7f7ef, #ffffffef);
+  padding: 1rem;
+  border-radius: 30px;
+  border: 1px solid rgb(211, 211, 211);
+}
+
+@media (min-width: 600px) {
+  .title__image{
+    width: 400px;
+  }
+  .card__image{
+    width: 120px;
+  }
+  .lista__pokemon{
+    gap: 2rem;
+    padding: 1rem;
+  }
+  .card__pokemon{
+    padding: 1rem;
+    width: auto;
+  }
+  .card__pokemon>p{
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .lista__container{
+    gap: 0.5rem;
+    padding-left: 15px;
+    padding-right: 6px;
+  }
+  .lista__container>span{
+    padding: 0.3rem;
+    scale: 1.2;
+  }
+  .lista__container>span:active{
+    scale: 0.9;
+  }
+}
+
+@media (min-width: 900px) {
+  .lista__container{
+    gap: 0.8rem;
+  }
+  .lista__container>span{
+    padding: 0.4rem;
+    scale: 1.4;
+  }
+  .lista__container>span:active{
+    scale: 1.1;
+  }
+}
+
+@media (min-width: 1600px) {
+  .lista__container{
+    gap: 2rem;
+  }
+  .lista__container>span{
+    padding: 0.5rem;
+    scale: 2;
+  }
+  .lista__container>span:active{
+    scale: 1.5;
+  }
+}
