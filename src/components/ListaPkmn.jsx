@@ -2,6 +2,8 @@ import { useState, useEffect} from 'react'
 import axios from 'axios'
 import Atropos from 'atropos/react';
 import 'atropos/css'
+import Pokemon from './Pokemon';
+import { useShowModal } from '../context/ShowModalContext';
 
 
 
@@ -9,6 +11,8 @@ const ListaPkmn = () => {
     const [pokemons, setPokemons] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [pokemonData, setPokemonData] = useState([])
+    const { showModal, handleModal } = useShowModal()
+
 
 
 
@@ -42,7 +46,6 @@ const ListaPkmn = () => {
                         const pokemonDatos = responses.map(response => response.data);
                         // Hacer algo con los datos de los Pokémon aquí
                         setPokemonData(pokemonDatos)
-                        console.log(pokemonDatos); // Esto mostrará todos los datos de los Pokémon obtenidos
                     } catch (error) {
                         console.error('Error:', error);
                     }
@@ -53,7 +56,6 @@ const ListaPkmn = () => {
         }
         fetchPokemonDetails();
     }, [pokemons])
-    console.log(currentPage);
     
     const loadMoreData = (pagina) => {
         if(currentPage < 49 && pagina === 'siguiente'){
@@ -70,6 +72,17 @@ const ListaPkmn = () => {
         else return `#${number}`
     }
 
+    const titleUpperCase = (nombre) =>{
+        let newNombre = ''
+        for (let index = 0; index < nombre.length; index++) {
+          if(index == 0){
+            newNombre += `${nombre[index].toUpperCase()}`
+          }else{
+            newNombre += `${nombre[index]}`
+          }
+        }
+        return newNombre
+      }
 
   return (
     <div className='lista__container'>
@@ -77,25 +90,21 @@ const ListaPkmn = () => {
         <div className='lista__pokemon'>
             {pokemonData.length > 0 ? 
             pokemonData.map((pokemon, index) => (
-                <div key={index} className='card__pokemon'>
-                    <p>{numberPokedex(pokemon.id)}</p>
+                <div key={index} className='card__pokemon' >
+                    <p onClick={() => handleModal(index, 'abrir')}>{numberPokedex(pokemon.id)}</p>
                     <div id="app">
                         <Atropos
                             activeOffset={40}
-                            shadowScale={0.15}
                             shadow={false}
-                            shadowOffset={15}
                             rotate={true}
                             rotateXMax={20}
                             rotateYMax={20}
-                            onEnter={() => console.log('Enter')}
-                            onLeave={() => console.log('Leave')}
-                            onRotate={(x, y) => console.log('Rotate', x, y)}
                         >
-                            <img src={pokemon.sprites.front_default} alt="" data-atropos-offset="10" className='card__image'/>
+                            <img src={pokemon.sprites.front_default} alt="" data-atropos-offset="10" className='card__image' onClick={() => handleModal(index, 'abrir')}/>
                         </Atropos>
                     </div>
-                    <p>{pokemon.species.name}</p>
+                    <p onClick={() => handleModal(index, 'abrir')}>{titleUpperCase(pokemon.species.name)}</p>
+                    {showModal[index] ? <Pokemon data={pokemon} index={index}/> : null}
                 </div>
             ))
             : <p>Cargando...</p>}

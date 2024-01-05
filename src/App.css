@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@font-face {
+  font-family: 'pokemon';
+  src: url('./assets/fonts/PokemonSolid.ttf') format('truetype');
+}
 *{
   margin: 0px;
   padding: 0px;
@@ -17,6 +21,7 @@
   background-image: url('./public/img/pokebola.jpg');
   min-height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
 .lista__container{
@@ -67,12 +72,15 @@
   padding: 0.2rem;
   border-radius: 6px;
   width: 60px;
+  user-select: none;
 }
 .card__pokemon>p{
   font-size: 0.7rem;
+  cursor: pointer;
 }
 .card__image{
   width: 50px;
+  cursor: pointer;
 }
 
 .title__image{
@@ -81,6 +89,148 @@
   padding: 1rem;
   border-radius: 30px;
   border: 1px solid rgb(211, 211, 211);
+  user-select: none;
+}
+
+.modal__container{
+  background-image: none;
+  background-color: rgba(0, 0, 0, 0.309);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  animation: back 0.7s linear;
+}
+
+.modal__card{
+  background-color: #3462AE;
+  color: white;
+  padding-bottom: 0.5rem;
+  border: 1px #1e488c solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 5px;
+  user-select: none;
+  animation: top 0.5s linear;
+}
+
+@keyframes back {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes top {
+  from{top: -20%;}
+  to{top: 50%;}
+}
+
+.modal__card>h4{
+  font-family: 'pokemon', sans-serif;
+  border-bottom: 1px solid #5284d5;
+  font-size: 1.5rem;
+  padding: 0px;
+  color: #FFCC01;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.721);
+  display: inline;
+  letter-spacing: 8px;
+}
+.modal__card__images__contain{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.modal__card__images{
+  display: flex;
+}
+.modal__card__images>article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal__card__images>article>img{
+  width: 90px;
+}
+.modal__card__info{
+  display: flex;
+  gap: 1rem;
+}
+.modal__card__info>article{
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.modal__card__info>article>h5{
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+.modal__card__types{
+  display: flex;
+  gap: 2rem;
+}
+.modal__card__types>section>h4{
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+.modal__table{
+  padding: 2px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+}
+.modal__table>thead{
+  background-color: #547ab8;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 6px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top: 1px solid #2f528a;
+  border-left: 1px solid #2f528a;
+  border-right: 1px solid #2f528a;
+}
+.modal__table>tbody{
+  width: 100%;
+  background-color: #668bc7;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid #2f528a;
+  border-left: 1px solid #2f528a;
+  border-bottom: 1px solid #2f528a;
+}
+.modal__table>tbody>tr{
+  display: flex;
+  justify-content: space-between;
+}
+.modal__table>tbody>tr>td{
+  padding: 3px;
+}
+.modal__close{
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+}
+.modal__close:hover{
+  color: #FFCC01;
+  transition: all 0.3s;
 }
 
 @media (min-width: 600px) {
@@ -113,6 +263,10 @@
   }
   .lista__container>span:active{
     scale: 0.9;
+  }
+  .modal__card>h4{
+    font-size: 3rem;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.721);
   }
 }
 

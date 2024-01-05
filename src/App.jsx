@@ -1,5 +1,7 @@
 import ListaPkmn from "./components/ListaPkmn"
 import './App.css'
+import 'atropos/css'
+
 
 function App() {
 
